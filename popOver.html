@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Create Attribute Set</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css" media="screen">
+.container {
+    padding: 20px;
+}
+
+.form-control {
+    width: 120px;
+}
+
+.popover {
+    max-width: 400px;
+}
+</style>
+
+<body>
+    <div class="container">
+        <h1>Create Attribute Set by PopOver</h1>
+        <p>Chipl phase 01</p>
+    </div>
+    <hr>
+    <div class="container-fluid">
+        <div class="container">
+            <h3>Bootstrap 3 Popover HTML Example</h3>
+            <ul class="list-unstyled">
+                <li><a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="right" type="button" data-html="true" href="#" id="login"><span class="glyphicon glyphicon-search" style="margin:3px 0 0 0"></span></a></li>
+                <div id="popover-content" class="hide">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input class="headerSearch search-query" id="str" name="str" type="text" placeholder="Search..." />
+                            <span class="glyphicon glyphicon-search" style="margin:3px 8px 0 -20px;"></span>
+                            <input class="btn btn-primary btn-xs" id="phSearchButton" type="submit" value="Search" />
+                            <input class="btn btn-primary btn-xs" id="searchButton" type="submit" value="Dictionary" />
+                        </div>
+                    </form>
+                </div>
+            </ul>
+        </div>
+        <hr>
+    </div>
+    <!--/container-fluid-->
+    <div class="container-fluid">
+        <ul class="list-inline">
+            <!-- <li><a href="#" title="Header" data-toggle="popover" data-placement="top" data-content="Content">Top</a></li>
+            <li><a href="#" title="Header" data-toggle="popover" data-placement="bottom" data-content="Content">Bottom</a></li>
+            <li><a href="#" title="Header" data-toggle="popover" data-placement="left" data-content="Content">Left</a></li>
+            <li><a href="#" title="Header" data-toggle="popover" data-placement="right" data-content="Content">Right</a></li> -->
+            <li><a href="#" title="Header" data-toggle="popover" data-placement="top">Top</a></li>
+            <li><a href="#" title="Header" data-toggle="popover" data-placement="bottom">Bottom</a></li>
+            <li><a href="#" title="Header" data-toggle="popover" data-placement="left">Left</a></li>
+            <li><a href="#" title="Header" data-toggle="popover" data-placement="right">Right</a></li>
+        </ul>
+        <hr>
+    </div>
+    <div class="container-fluid">
+        <a href="#" data-trigger="manual" data-toggle="popover" data-placement="right" data-content="Here is some amazing content. It's very engaging. right?" data-original-title="Popover Title">
+            <img src="./img/aircraft.jpg" id="img1">
+        </a>
+    </div>
+    <span>http://www.bootply.com/61825</span>
+</body>
+<script type="text/javascript" charset="utf-8" async defer>
+$("[data-toggle=popover]").popover({
+    html: true,
+    content: function() {
+        return $('#popover-content').html();
+        // return "something very special";
+    }
+});
+
+// $(document).ready(function() {
+//     $('[data-toggle=popover]').popover();
+// });
+
+
+$('body').on('click', function(e) {
+    $('[data-toggle=popover]').each(function() {
+        // hide any open popovers when the anywhere else in the body is clicked
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+});
+
+$("[data-toggle=popover]").mousedown(function() {
+    // toggle popover when link is clicked
+    $(this).popover('toggle');
+});
+
+// $("[data-toggle=popover]").draggable({
+//     stop: function() {
+//         // show popover when drag stops
+//         $(this).popover('show');
+//     }
+// });
+</script>
+
+</html>
