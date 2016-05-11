@@ -63,12 +63,11 @@ function drop(ev) {
     }
     nodeCopy.setted = false;
     var popoverContent = createAttributePanel(nodeCopy);
-
     // 2. Create popover
-
     $(nodeCopy).popover({
         html: true,
         trigger: 'click',
+        title: nodeCopy.controlType,
         content: function() {
             $('[data-toggle=popover]').each(function() {
                 // hide any open popovers when the anywhere else in the body is clicked
@@ -77,10 +76,9 @@ function drop(ev) {
                     $(this).popover('hide');
                 }
             });
-            
+
             // console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
             console.log('clicked object: ', nodeCopy.id, nodeCopy);
-            //return $('#popover-content').html();
             return popoverContent;
         }
     });
@@ -134,15 +132,6 @@ $(function CreateControlsTemplate() {
 })
 
 function createSingleControlGroup(template) {
-    // <div class="row control" draggable="true" ondragstart="drag(event)" id="drag1">
-    //     <div class="col-md-3 col-lg-3">
-    //         <label>Text Input</label>
-    //     </div>
-    //     <div class="col-md-9 col-lg-9">
-    //     <input class="col-md-12" type="text" name="" value="" placeholder="placeholder">
-    //         </div>
-    //     </div>
-    //1. Create a control container
     newId++;
     var container_div = document.createElement('div');
     container_div.classList.add("row");
@@ -343,9 +332,6 @@ function createAttributePanel(nodeCopy) {
         }
 
     }
-    //console.log(main_panel.innerHTML);
-    // var testPanel = document.querySelector("#testPanel");
-    // testPanel.appendChild(main_panel);
     var cover = document.createElement("cover");
     cover.classList.add("row");
     cover.appendChild(main_panel);
