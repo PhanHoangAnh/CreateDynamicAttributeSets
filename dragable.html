@@ -11,108 +11,109 @@
     <script src="./js/html2canvas.min.js" type="text/javascript" charset="utf-8" async defer></script>
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <<script src="./js/controls.js" type="text/javascript" charset="utf-8" async defer></script>
-    <script src="./js/DragNDrop.js" type="text/javascript" charset="utf-8" async defer></script>
-    <style type="text/css" media="screen">
-    fieldset.scheduler-border {
-        border: 1px groove #ddd !important;
-        padding: 0 1.4em 1.4em 1.4em !important;
-        margin: 0 0 1.5em 0 !important;
-        -webkit-box-shadow: 0px 0px 0px 0px #000;
-        box-shadow: 0px 0px 0px 0px #000;
-    }
-    
-    legend.scheduler-border {
-        font-size: 1.2em !important;
-        font-weight: bold !important;
-        text-align: left !important;
-        width: auto;
-        padding: 0 10px;
-        border-bottom: none;
-    }
-    
-    #div1,
-    #div2 {
-        /*  float: left;
+        <script src="./js/DragNDrop.js" type="text/javascript" charset="utf-8" async defer></script>
+        <style type="text/css" media="screen">
+        fieldset.scheduler-border {
+            border: 1px groove #ddd !important;
+            padding: 0 1.4em 1.4em 1.4em !important;
+            margin: 0 0 1.5em 0 !important;
+            -webkit-box-shadow: 0px 0px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+        
+        legend.scheduler-border {
+            font-size: 1.2em !important;
+            font-weight: bold !important;
+            text-align: left !important;
+            width: auto;
+            padding: 0 10px;
+            border-bottom: none;
+        }
+        
+        #div1,
+        #div2 {
+            /*  float: left;
         width: 100px;
         height: 35px;
         margin: 10px;
         padding: 10px;*/
-        border: 1px solid #aaaaaa;
-        min-height: 50px;
-        padding: 30px 20px 50px;
-    }
-    
-    .container {
-        padding: 20px;
-    }
-    
-    .form-control {
-        width: 120px;
-    }
-    
-    .popover {
-        min-width: 400px;
-    }
-    
-    .control {
-        padding: 10px;
-    }
-    
-    .ui-sortable-placeholder {
-        border: 1px dashed #aaa;
-        height: 45px;
-        width: 100%;
-        background: #fafafa;
-    }
-    </style>
+            border: 1px solid #aaaaaa;
+            min-height: 50px;
+            padding: 30px 20px 50px;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        .form-control {
+            width: 120px;
+        }
+        
+        .popover {
+            min-width: 400px;
+        }
+        
+        .control {
+            padding: 10px;
+        }
+        
+        .ui-sortable-placeholder {
+            border: 1px dashed #aaa;
+            height: 45px;
+            width: 100%;
+            background: #fafafa;
+        }
+        </style>
 
-    <body>
-        <div class="container">
-            <h1> Create Attribute Set by Drag n Drop</h1>
-            <p>Chipl phase 01</p>
-        </div>
-        <hr>
-        <div class="container-fluid">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">Attributes Set</legend>
-                    <!-- <div class="control-group">
+        <body>
+            <div class="container">
+                <h1> Create Attribute Set by Drag n Drop</h1>
+                <p>Chipl phase 01</p>
+            </div>
+            <hr>
+            <div class="container-fluid">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Attributes Set</legend>
+                        <!-- <div class="control-group">
                         <label class="control-label input-label" for="startTime">Start :</label>
                         <div class="controls bootstrap-timepicker">
                             <input type="text" class="datetime" type="text" id="startTime" name="startTime" placeholder="Start Time" />
                             <i class="icon-time"></i>
                         </div>
                     </div> -->
-                    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
-                </fieldset>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">Input Types</legend>
-                    <div id="div1" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <!-- Controls Attribute start here -->
-
-                    </div>
-            </div>
-            </fieldset>
-            <div id="popover-content" class="hide">
-                <!-- <form class="form-inline" role="form"> -->
-                <div>
-                    <input class="headerSearch search-query" id="str" name="str" type="text" placeholder="Search..." />
-                    <span class="glyphicon glyphicon-search" style="margin:3px 8px 0 -20px;"></span>
-                    <input class="btn btn-primary btn-xs" id="phSearchButton" type="submit" value="Search" />
-                    <input class="btn btn-primary btn-xs" id="searchButton" type="submit" value="Dictionary" />
+                        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
+                    </fieldset>
                 </div>
-                <!-- </form> -->
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Input Types</legend>
+                        <div id="div1" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <!-- Controls Attribute start here -->
+                        </div>
+                </div>
+                </fieldset>
+                <div id="popover-content" class="hide">
+                    <!-- <form class="form-inline" role="form"> -->
+                    <div>
+                        <input class="headerSearch search-query" id="str" name="str" type="text" placeholder="Search..." />
+                        <span class="glyphicon glyphicon-search" style="margin:3px 8px 0 -20px;"></span>
+                        <input class="btn btn-primary btn-xs" id="phSearchButton" type="submit" value="Search" />
+                        <input class="btn btn-primary btn-xs" id="searchButton" type="submit" value="Dictionary" />
+                    </div>
+                    <!-- </form> -->
+                </div>
             </div>
-        </div>
-        </div>
-        <!--     <a href="http://www.bootply.com/mW09b0bQcE">Edit on Bootply</a> -->
-        </div>
-        <!--/container-fluid-->
-    </body>
-    <script type="text/javascript" charset="utf-8" async defer>
+            </div>
+            <!--     <a href="http://www.bootply.com/mW09b0bQcE">Edit on Bootply</a> -->
+            </div>
+            <div id ="testPanel" class="ontainer-fluid">
 
-    </script>
+            </div>
+            <!--/container-fluid-->
+        </body>
+        <script type="text/javascript" charset="utf-8" async defer>
+        </script>
 
 </html>

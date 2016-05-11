@@ -53,19 +53,19 @@ function drop(ev) {
     // chipl initiated popover before first click
     // 1. Create template for associated popover
     nodeCopy.controlType = nodeCopy.getAttribute("data-controlType");
-    nodeCopy.attribute= {};
-    for (var i in data){
-        if(data[i]["Input Type"]== nodeCopy.controlType){            
-            for (var att in data[i]["fields"]){
+    nodeCopy.attribute = {};
+    for (var i in data) {
+        if (data[i]["Input Type"] == nodeCopy.controlType) {
+            for (var att in data[i]["fields"]) {
                 nodeCopy.attribute[att] = data[i]["fields"][att];
             }
         }
     }
     nodeCopy.setted = false;
-    console.log(nodeCopy.attribute);
+    var popoverContent = createAttributePanel(nodeCopy);
 
     // 2. Create popover
-    
+
     $(nodeCopy).popover({
         html: true,
         trigger: 'click',
@@ -77,13 +77,13 @@ function drop(ev) {
                     $(this).popover('hide');
                 }
             });
-            //var obj = $(this).parents('.popover.in').prev();
+            
             // console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
             console.log('clicked object: ', nodeCopy.id, nodeCopy);
-            return $('#popover-content').html();
+            //return $('#popover-content').html();
+            return popoverContent;
         }
     });
-
     // ev.target.appendChild(nodeCopy);
     document.querySelector("#div2").appendChild(nodeCopy);
 }
@@ -180,7 +180,7 @@ function createSingleControlGroup(template) {
             input.name = template["value"];
             if (template["fields"]["options"]) {
                 for (item in template["fields"]["options"]) {
-                    
+
                     input.classList.add("col-md-6");
                     input.classList.add("col-lg-6");
                     input.value = item;
@@ -200,7 +200,7 @@ function createSingleControlGroup(template) {
             input.name = template["value"];
             if (template["fields"]["options"]) {
                 for (item in template["fields"]["options"]) {
-                    
+
                     input.classList.add("col-md-6");
                     input.classList.add("col-lg-6");
                     input.value = item;
@@ -212,7 +212,7 @@ function createSingleControlGroup(template) {
                     span.classList.add("col-lg-6");
                     input_cover.appendChild(span);
                 }
-            container_div.setAttribute("data-controlType", "checkbox");
+                container_div.setAttribute("data-controlType", "checkbox");
             }
             break;
         case ("number"):
@@ -304,36 +304,50 @@ function createSingleControlGroup(template) {
     document.querySelector("#div1").appendChild(container_div);
 }
 
-function createAttributePanel(fields) {
-/*
-"fields": {
-            "id": {
-                "label": "ID / Name",
-                "Input Type": "text",
-                "value": "textinput"
-            },
-            "label": {
-                "label": "Label Text",
-                "Input Type": "text",
-                "value": "Text Input"
-            },
-            "placeholder": {
-                "label": "Placeholder",
-                "Input Type": "text",
-                "value": "placeholder"
-            },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
-            },
-            "describe": {
-                "label": "More info",
-                "Input Type": "text",
-                "value": "Describe attribute"
-            },
-            "min": 1,
-            "max": 200
+function createAttributePanel(nodeCopy) {
+
+    var controlType = nodeCopy.controlType;
+    var fileds = nodeCopy.attribute;
+    console.log("controlType", controlType);
+    console.log("fileds", fileds);
+
+    var main_panel = document.createElement('main_panel');
+    main_panel.classList.add("col-md-12");
+    main_panel.classList.add("col-lg-12")
+    for (var item in fileds) {
+        var label = document.createElement("LABEL");
+        label.classList.add("col-lg-12");
+        label.classList.add("col-md-12");
+        main_panel.appendChild(label);
+        if (item != "options") {
+            label.innerHTML = fileds[item]["label"];
+            var input = document.createElement("input");
+            input.classList.add("col-md-12");
+            input.classList.add("col-lg-12");
+            input.type = fileds[item]["Input Type"];
+            input.placeholder = fileds[item]["value"];
+            main_panel.appendChild(input);
         }
-*/
+        if (item == "options") {
+            // if (nodeCopy.controlType == "radio"){};
+            var input = document.createElement('textarea');
+            input.classList.add("col-md-12");
+            input.classList.add("col-lg-12");
+            label.innerHTML = "options";
+            var opt_string = "";
+            for (var opt in fileds["options"]) {
+                opt_string = opt_string + fileds["options"][opt] + "\n";
+            }
+            input.value = opt_string;
+            main_panel.appendChild(input);
+        }
+
+    }
+    //console.log(main_panel.innerHTML);
+    // var testPanel = document.querySelector("#testPanel");
+    // testPanel.appendChild(main_panel);
+    var cover = document.createElement("cover");
+    cover.classList.add("row");
+    cover.appendChild(main_panel);
+    return cover;
 }

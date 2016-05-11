@@ -42,7 +42,7 @@ var data = [{
             },
             "label": {
                 "label": "Radio",
-                "Input Type": "radio",
+                "Input Type": "text",
                 "value": "Radio"
             },
             "required": {
@@ -73,7 +73,7 @@ var data = [{
             },
             "label": {
                 "label": "Radio",
-                "Input Type": "radio",
+                "Input Type": "text",
                 "value": "Radio"
             },
             "required": {
