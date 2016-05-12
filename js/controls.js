@@ -19,16 +19,16 @@ var data = [{
                 "Input Type": "text",
                 "value": "placeholder"
             },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
             },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
         }
     }, {
         "label": "Radio",
@@ -41,24 +41,25 @@ var data = [{
                 "value": "radioinput"
             },
             "label": {
-                "label": "Radio",
+                "label": "Label",
                 "Input Type": "text",
                 "value": "Radio"
             },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
+            "options": {
+                "1": "value 1",
+                "2": "value 2",
+                "3": "value 3",
             },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
             },
-            "options": {
-                "1": "value 1",
-                "2": "value 2",
-                "3": "value 3",
+
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
             }
         }
     }, {
@@ -72,14 +73,9 @@ var data = [{
                 "value": "checkbox Name"
             },
             "label": {
-                "label": "Radio",
+                "label": "Label",
                 "Input Type": "text",
                 "value": "Radio"
-            },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
             },
             "describe": {
                 "label": "More info",
@@ -90,6 +86,11 @@ var data = [{
                 "1": "value 1",
                 "2": "value 2",
                 "3": "value 3",
+            },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
             }
         }
     }, {
@@ -113,18 +114,18 @@ var data = [{
                 "Input Type": "text",
                 "value": "placeholder"
             },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
             },
             "min": 1,
-            "max": 200
+            "max": 200,
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
         }
     }, {
         "label": "Date Input",
@@ -147,15 +148,15 @@ var data = [{
                 "Input Type": "text",
                 "value": "placeholder"
             },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
+            },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
             }
         }
     }, {
@@ -179,15 +180,15 @@ var data = [{
                 "Input Type": "text",
                 "value": "placeholder"
             },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
+            },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
             }
         }
     }, {
@@ -211,18 +212,18 @@ var data = [{
                 "Input Type": "text",
                 "value": "placeholder"
             },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
             },
             "min": 1,
-            "max": 200
+            "max": 200,
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
         }
     }, {
         "label": "Month Input",
@@ -245,16 +246,16 @@ var data = [{
                 "Input Type": "text",
                 "value": "placeholder"
             },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
             },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
         }
     }, {
         "label": "Week Input",
@@ -277,16 +278,16 @@ var data = [{
                 "Input Type": "text",
                 "value": "placeholder"
             },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
             },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
         }
     }, {
         "label": "Time Input",
@@ -309,16 +310,16 @@ var data = [{
                 "Input Type": "text",
                 "value": "placeholder"
             },
-            "required": {
-                "label": "Required",
-                "Input Type": "checkbox",
-                "value": false
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
             },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
         }
     }
 

@@ -302,27 +302,46 @@ function createAttributePanel(nodeCopy) {
 
     var main_panel = document.createElement('main_panel');
     main_panel.classList.add("col-md-12");
-    main_panel.classList.add("col-lg-12")
+    main_panel.classList.add("col-lg-12");
+    main_panel.classList.add("clearfix")
     for (var item in fileds) {
         var label = document.createElement("LABEL");
         label.classList.add("col-lg-12");
         label.classList.add("col-md-12");
         main_panel.appendChild(label);
-        if (item != "options") {
+        if (item != "options" && item != "min" && item != "max") {
             label.innerHTML = fileds[item]["label"];
             var input = document.createElement("input");
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
             input.type = fileds[item]["Input Type"];
             input.placeholder = fileds[item]["value"];
-            main_panel.appendChild(input);
+            if (item == "required") {
+                var row = document.createElement("div");
+                row.classList.add("row");
+                row.classList.add("clearfix");
+                label.classList.remove("col-lg-12");
+                label.classList.remove("col-md-12");
+                label.classList.add("col-lg-6");
+                label.classList.add("col-md-6");
+                label.innerHTML = "Require";
+                input.classList.add("col-md-6");
+                input.classList.add("col-lg-6");
+                input.type = fileds[item]["Input Type"];
+                row.appendChild(label);
+                row.appendChild(input);
+                main_panel.appendChild(row);
+            } else {
+                main_panel.appendChild(input);
+            }
         }
         if (item == "options") {
             // if (nodeCopy.controlType == "radio"){};
             var input = document.createElement('textarea');
+            input.rows = 3;
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
-            label.innerHTML = "options";
+            label.innerHTML = "Options";
             var opt_string = "";
             for (var opt in fileds["options"]) {
                 opt_string = opt_string + fileds["options"][opt] + "\n";
@@ -330,10 +349,40 @@ function createAttributePanel(nodeCopy) {
             input.value = opt_string;
             main_panel.appendChild(input);
         }
+        if (item == "min" || item == "max") {
+            label.innerHTML = item;
+            var input = document.createElement("input");
+            input.classList.add("col-md-12");
+            input.classList.add("col-lg-12");
+            input.type = "number";
+            input.placeholder = "Number only";
+            main_panel.appendChild(input);
+        }
 
     }
+    var hr = document.createElement("hr");
+    hr.setAttribute("style", "width: 100%;display: block;float: left;");
+    main_panel.appendChild(hr);
+    var save = document.createElement("button");
+    save.classList.add("btn");
+    save.classList.add("btn-danger");
+    save.innerHTML = "Save";
+
+    var controlHandler = document.createElement("div");
+    controlHandler.classList.add("row");
+    var cancel = document.createElement("button");
+    cancel.classList.add("btn");
+    cancel.classList.add("btn-info")
+    cancel.innerHTML = "Cancel";
+
+    controlHandler.appendChild(save);
+    controlHandler.appendChild(cancel);
+
     var cover = document.createElement("cover");
     cover.classList.add("row");
+    main_panel.appendChild(controlHandler);
     cover.appendChild(main_panel);
+    // Test
+    document.querySelector("#testPanel").appendChild(cover);
     return cover;
 }
