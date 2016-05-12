@@ -142,10 +142,12 @@ function createSingleControlGroup(template) {
     //2. Create detail Element
     var label_cover = document.createElement("div");
     var label = document.createElement("Label");
+    label.setAttribute("data-controlType", "label");
     label.innerHTML = template["label"];
     label_cover.classList.add("col-md-3");
     label_cover.classList.add("col-lg-3");
     label_cover.appendChild(label);
+
     container_div.appendChild(label_cover);
 
     var input_cover = document.createElement("div");
@@ -169,7 +171,6 @@ function createSingleControlGroup(template) {
             input.name = template["value"];
             if (template["fields"]["options"]) {
                 for (item in template["fields"]["options"]) {
-
                     input.classList.add("col-md-6");
                     input.classList.add("col-lg-6");
                     input.value = item;
@@ -226,6 +227,7 @@ function createSingleControlGroup(template) {
             input.type = "date";
             if (template["placeholder"]) {
                 input.placeholder = template["placeholder"];
+                input.setAttribute("data-controlType", "input");
             }
             input_cover.appendChild(input);
             container_div.setAttribute("data-controlType", "date");
@@ -236,6 +238,7 @@ function createSingleControlGroup(template) {
             input.type = "color";
             if (template["placeholder"]) {
                 input.placeholder = template["placeholder"];
+                input.setAttribute("data-controlType", "input");
             }
             input_cover.appendChild(input);
             container_div.setAttribute("data-controlType", "color");
@@ -286,6 +289,7 @@ function createSingleControlGroup(template) {
         span.classList.add("help-block");
         span.classList.add("col-md-12");
         span.classList.add("col-lg-12");
+        span.setAttribute("data-controlType", "describe");
     }
     input_cover.appendChild(span);
     container_div.appendChild(input_cover);
@@ -316,6 +320,10 @@ function createAttributePanel(nodeCopy) {
             input.classList.add("col-lg-12");
             input.type = fileds[item]["Input Type"];
             input.placeholder = fileds[item]["value"];
+
+            input.setAttribute("data-controlType", item);
+            input.addEventListener("change", changeControlAttribute);
+
             if (item == "required") {
                 var row = document.createElement("div");
                 row.classList.add("row");
@@ -347,6 +355,8 @@ function createAttributePanel(nodeCopy) {
                 opt_string = opt_string + fileds["options"][opt] + "\n";
             }
             input.value = opt_string;
+            input.setAttribute("data-controlType", item)
+            input.addEventListener("change", changeControlAttribute);
             main_panel.appendChild(input);
         }
         if (item == "min" || item == "max") {
@@ -356,6 +366,8 @@ function createAttributePanel(nodeCopy) {
             input.classList.add("col-lg-12");
             input.type = "number";
             input.placeholder = "Number only";
+            input.setAttribute("data-controlType", item);
+            input.addEventListener("change", changeControlAttribute);
             main_panel.appendChild(input);
         }
 
@@ -384,5 +396,18 @@ function createAttributePanel(nodeCopy) {
     cover.appendChild(main_panel);
     // Test
     document.querySelector("#testPanel").appendChild(cover);
+
+    function changeControlAttribute(evt) {
+        //console.log(this.getAttribute("data-controlType"));
+        var ctrType = this.getAttribute("data-controlType");
+        var controls = nodeCopy.querySelectorAll("[data-controlType]");
+        for (var elem in controls) {
+            console.log(controls[elem]);
+            if (controls[elem] instanceof Node && controls[elem].getAttribute("data-controltype") == ctrType) {
+                controls[elem].innerHTML = this.value;
+            }
+        }
+        //receiver = nodeCopy.querySelector([queryStr]);
+    }
     return cover;
 }
