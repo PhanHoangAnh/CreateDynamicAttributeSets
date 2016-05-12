@@ -108,13 +108,7 @@ var data = [{
                 "label": "Label Text",
                 "Input Type": "text",
                 "value": "Text Input"
-            },
-            "placeholder": {
-                "label": "Placeholder",
-                "Input Type": "text",
-                "value": "placeholder"
-            },
-            "describe": {
+            },"describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
@@ -143,11 +137,6 @@ var data = [{
                 "Input Type": "text",
                 "value": "Text Input"
             },
-            "placeholder": {
-                "label": "Placeholder",
-                "Input Type": "text",
-                "value": "placeholder"
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
@@ -175,11 +164,6 @@ var data = [{
                 "Input Type": "text",
                 "value": "Text Input"
             },
-            "placeholder": {
-                "label": "Placeholder",
-                "Input Type": "text",
-                "value": "placeholder"
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
@@ -206,11 +190,6 @@ var data = [{
                 "label": "Label Text",
                 "Input Type": "text",
                 "value": "Text Input"
-            },
-            "placeholder": {
-                "label": "Placeholder",
-                "Input Type": "text",
-                "value": "placeholder"
             },
             "describe": {
                 "label": "More info",
@@ -241,11 +220,6 @@ var data = [{
                 "Input Type": "text",
                 "value": "Text Input"
             },
-            "placeholder": {
-                "label": "Placeholder",
-                "Input Type": "text",
-                "value": "placeholder"
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
@@ -273,11 +247,6 @@ var data = [{
                 "Input Type": "text",
                 "value": "Text Input"
             },
-            "placeholder": {
-                "label": "Placeholder",
-                "Input Type": "text",
-                "value": "placeholder"
-            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
@@ -304,11 +273,6 @@ var data = [{
                 "label": "Label Text",
                 "Input Type": "text",
                 "value": "Text Input"
-            },
-            "placeholder": {
-                "label": "Placeholder",
-                "Input Type": "text",
-                "value": "placeholder"
             },
             "describe": {
                 "label": "More info",
