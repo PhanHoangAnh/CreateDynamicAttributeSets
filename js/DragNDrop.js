@@ -182,6 +182,7 @@ function createSingleControlGroup(template) {
                     span.classList.add("col-lg-6");
                     input_cover.appendChild(span);
                 }
+                input_cover.setAttribute("data-controlType", "options");
             }
             container_div.setAttribute("data-controlType", "radio");
             break;
@@ -202,6 +203,7 @@ function createSingleControlGroup(template) {
                     span.classList.add("col-lg-6");
                     input_cover.appendChild(span);
                 }
+                input_cover.setAttribute("data-controlType", "options");
                 container_div.setAttribute("data-controlType", "checkbox");
             }
             break;
@@ -336,6 +338,7 @@ function createAttributePanel(nodeCopy) {
                 input.classList.add("col-md-6");
                 input.classList.add("col-lg-6");
                 input.type = fileds[item]["Input Type"];
+                input.addEventListener("change", changeControlAttribute);
                 row.appendChild(label);
                 row.appendChild(input);
                 main_panel.appendChild(row);
@@ -402,9 +405,41 @@ function createAttributePanel(nodeCopy) {
         var ctrType = this.getAttribute("data-controlType");
         var controls = nodeCopy.querySelectorAll("[data-controlType]");
         for (var elem in controls) {
-            console.log(controls[elem]);
+            //console.log(controls[elem]);
             if (controls[elem] instanceof Node && controls[elem].getAttribute("data-controltype") == ctrType) {
-                controls[elem].innerHTML = this.value;
+                if (ctrType == "options") {
+                    var optArr = $(this).val().split('\n');
+                    //console.log(optArr);
+                    var describe = controls[elem].querySelector("[data-controlType='describe']").cloneNode(true);
+                    console.log(describe);
+                    while (controls[elem].firstChild) {
+                        controls[elem].removeChild(controls[elem].firstChild);
+                    }
+
+                    console.log(controls[elem]);
+
+                    var inputType = controls[elem].parentNode.getAttribute("data-controlType");
+                    console.log(inputType);
+                    var input = document.createElement("input");
+                    input.type = inputType;
+                    for (var item in optArr) {
+                        // Set input name later
+                        input.classList.add("col-md-6");
+                        input.classList.add("col-lg-6");
+                        input.value = item;
+                        var copy_radio = input.cloneNode(true);
+                        controls[elem].appendChild(copy_radio);
+                        var span = document.createElement("span")
+                        span.innerHTML = optArr[item];
+                        span.classList.add("col-md-6");
+                        span.classList.add("col-lg-6");
+                        controls[elem].appendChild(span);
+                    }
+                    controls[elem].appendChild(describe);
+                } else {
+                    controls[elem].innerHTML = this.value;
+                }
+
             }
         }
         //receiver = nodeCopy.querySelector([queryStr]);
