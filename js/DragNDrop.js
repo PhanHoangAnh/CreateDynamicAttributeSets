@@ -129,7 +129,7 @@ $(function CreateControlsTemplate() {
         createSingleControlGroup(data[i]);
         //console.log("-----------");
     }
-    setAttributeName();
+     setAttributeName();
 })
 
 function createSingleControlGroup(template) {
@@ -325,7 +325,7 @@ function createAttributePanel(nodeCopy) {
             input.placeholder = fileds[item]["value"];
 
             input.setAttribute("data-controlType", item);
-            input.addEventListener("change", changeControlAttribute);
+            input.addEventListener("change", changeControlAttribute, false);
 
             if (item == "required") {
                 var row = document.createElement("div");
@@ -339,7 +339,7 @@ function createAttributePanel(nodeCopy) {
                 input.classList.add("col-md-6");
                 input.classList.add("col-lg-6");
                 input.type = fileds[item]["Input Type"];
-                input.addEventListener("change", changeControlAttribute);
+                input.addEventListener("change", changeControlAttribute,false);
                 row.appendChild(label);
                 row.appendChild(input);
                 main_panel.appendChild(row);
@@ -360,7 +360,7 @@ function createAttributePanel(nodeCopy) {
             }
             input.value = opt_string;
             input.setAttribute("data-controlType", item)
-            input.addEventListener("change", changeControlAttribute);
+            input.addEventListener("change", changeControlAttribute, false);
             main_panel.appendChild(input);
         }
         if (item == "min" || item == "max") {
@@ -371,7 +371,7 @@ function createAttributePanel(nodeCopy) {
             input.type = "number";
             input.placeholder = "Number only";
             input.setAttribute("data-controlType", item);
-            input.addEventListener("change", changeControlAttribute);
+            input.addEventListener("change", changeControlAttribute, false);
             main_panel.appendChild(input);
         }
 
@@ -452,7 +452,7 @@ function setAttributeName() {
     var legent = document.querySelector("#SetsName");
     legent.setAttribute("data-toggle", "popover");
     legent.setAttribute("data-placement", "right");
-    legent.controlType = legent.getAttribute("data-controlType");
+    //legent.controlType = legent.getAttribute("data-controlType");
     legent.attribute = {};
     for (var i in data) {
         if (data[i]["Input Type"] == legent.controlType) {
@@ -461,8 +461,14 @@ function setAttributeName() {
             }
         }
     }
+    legent.attribute["label"] = {
+        "label": "Set Attributes Set Name",
+        "Input Type": "text",
+        "value": "Text Input"
+    }
+
     legent.setted = false;
-    var popoverContent = createAttributePanel(legent);
+    var _Content = createAttributePanel(legent);
     // 2. Create popover
     $(legent).popover({
         html: true,
@@ -479,7 +485,7 @@ function setAttributeName() {
 
             //  console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
             //  console.log('clicked object: ', nodeCopy.id, nodeCopy);
-            return popoverContent;
+            return _Content;
         }
     });
 }
