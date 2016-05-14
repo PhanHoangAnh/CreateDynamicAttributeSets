@@ -127,8 +127,9 @@ $(function CreateControlsTemplate() {
     // body...
     for (i in data) {
         createSingleControlGroup(data[i]);
-        console.log("-----------");
+        //console.log("-----------");
     }
+    setAttributeName();
 })
 
 function createSingleControlGroup(template) {
@@ -303,8 +304,8 @@ function createAttributePanel(nodeCopy) {
 
     var controlType = nodeCopy.controlType;
     var fileds = nodeCopy.attribute;
-    console.log("controlType", controlType);
-    console.log("fileds", fileds);
+    //console.log("controlType", controlType);
+    //console.log("fileds", fileds);
 
     var main_panel = document.createElement('main_panel');
     main_panel.classList.add("col-md-12");
@@ -416,7 +417,7 @@ function createAttributePanel(nodeCopy) {
                         controls[elem].removeChild(controls[elem].firstChild);
                     }
 
-                    console.log(controls[elem]);
+                    // console.log(controls[elem]);
 
                     var inputType = controls[elem].parentNode.getAttribute("data-controlType");
                     console.log(inputType);
@@ -445,4 +446,40 @@ function createAttributePanel(nodeCopy) {
         //receiver = nodeCopy.querySelector([queryStr]);
     }
     return cover;
+}
+
+function setAttributeName() {
+    var legent = document.querySelector("#SetsName");
+    legent.setAttribute("data-toggle", "popover");
+    legent.setAttribute("data-placement", "right");
+    legent.controlType = legent.getAttribute("data-controlType");
+    legent.attribute = {};
+    for (var i in data) {
+        if (data[i]["Input Type"] == legent.controlType) {
+            for (var att in data[i]["fields"]) {
+                legent.attribute[att] = data[i]["fields"][att];
+            }
+        }
+    }
+    legent.setted = false;
+    var popoverContent = createAttributePanel(legent);
+    // 2. Create popover
+    $(legent).popover({
+        html: true,
+        trigger: 'click',
+        title: "Attributes Set Name",
+        content: function() {
+            $('[data-toggle=popover]').each(function() {
+                // hide any open popovers when the anywhere else in the body is clicked
+                // // if (!$(this).is(evt.target) && $(this).has(evt.target).length === 0 && $('.popover').has(evt.target).length === 0) {  
+                if (this != legent) {
+                    $(this).popover('hide');
+                }
+            });
+
+            //  console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
+            //  console.log('clicked object: ', nodeCopy.id, nodeCopy);
+            return popoverContent;
+        }
+    });
 }
