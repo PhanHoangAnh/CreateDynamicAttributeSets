@@ -77,8 +77,8 @@ function drop(ev) {
                 }
             });
 
-            // console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
-            console.log('clicked object: ', nodeCopy.id, nodeCopy);
+            //  console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
+            //  console.log('clicked object: ', nodeCopy.id, nodeCopy);
             return popoverContent;
         }
     });
@@ -398,7 +398,7 @@ function createAttributePanel(nodeCopy) {
     main_panel.appendChild(controlHandler);
     cover.appendChild(main_panel);
     // Test
-    document.querySelector("#testPanel").appendChild(cover);
+    //  document.querySelector("#testPanel").appendChild(cover);
 
     function changeControlAttribute(evt) {
         //console.log(this.getAttribute("data-controlType"));
