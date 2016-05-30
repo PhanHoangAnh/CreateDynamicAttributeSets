@@ -33,8 +33,8 @@ $(function() {
                 sortableIn = 1;
                 // console.log("over from div2: ", sortableIn);
             },
-            out: function(e, ui) {                
-                sortableIn = 0;                
+            out: function(e, ui) {
+                sortableIn = 0;
             },
             beforeStop: function(e, ui) {
                 if (sortableIn == 0) {
@@ -57,7 +57,7 @@ $(function() {
                 // 
                 var nodeCopy = ui.item.clone();
                 newId++;
-                nodeCopy.id = newId; /* We cannot use the same ID */                
+                nodeCopy.id = newId; /* We cannot use the same ID */
                 nodeCopy.attr("data-toggle", "popover");
                 nodeCopy.attr("data-placement", "right");
                 // chipl initiated popover before first click
@@ -381,7 +381,13 @@ function createAttributePanel(nodeCopy) {
     function changeControlAttribute(evt) {
         //console.log(this.getAttribute("data-controlType"));
         var ctrType = this.getAttribute("data-controlType");
-        var controls = nodeCopy.get(0).querySelectorAll("[data-controlType]");
+        var controls;
+        if (nodeCopy instanceof Node) {
+            controls = nodeCopy.querySelectorAll("[data-controlType]");
+        } else {
+            controls = nodeCopy.get(0).querySelectorAll("[data-controlType]");
+        }
+        // console.log("is Dom: ", evt.nodeType, "is jquery object", evt.jquery, controls);
         for (var elem in controls) {
             //console.log(controls[elem]);
             if (controls[elem] instanceof Node && controls[elem].getAttribute("data-controltype") == ctrType) {
@@ -426,10 +432,10 @@ function createAttributePanel(nodeCopy) {
 }
 
 function setAttributeName() {
-    // var legent = document.querySelector("#SetsName");
-    var legent = $("#SetsName");
-    legent.attr("data-toggle", "popover");
-    legent.attr("data-placement", "right");
+    var legent = document.querySelector("#SetsName");
+    // var legent = $(_legent);
+    legent.setAttribute("data-toggle", "popover");
+    legent.setAttribute("data-placement", "right");
     //legent.controlType = legent.getAttribute("data-controlType");
     legent.attribute = {};
     for (var i in data) {
@@ -450,8 +456,8 @@ function setAttributeName() {
     // 2. Create popover
     $(legent).popover({
         html: true,
-        trigger: 'click',
-        title: "Attributes Set Name",
+        // trigger: 'click',
+        title: "Set Attributes Name",
         content: function() {
             $('[data-toggle=popover]').each(function() {
                 // hide any open popovers when the anywhere else in the body is clicked
