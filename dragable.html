@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="./js/html2canvas.min.js" type="text/javascript" charset="utf-8" async defer></script>
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="./js/controls.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/DragNDrop.js" type="text/javascript" charset="utf-8" async defer></script>
@@ -79,13 +78,14 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="SetsName">
                         <legend data-controltype="label">Set's Name</legend>
                     </div>
-                    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
+                    <!--                     <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div> -->
+                    <div id="div2" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 connectedSortable"></div>
                 </fieldset>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">Input Types</legend>
-                    <div id="div1" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div id="div1" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 connectedSortable">
                         <!-- Controls Attribute start here -->
                     </div>
             </div>

@@ -1,96 +1,18 @@
 var newId = 0;
 
-function allowDrop(ev) {
-    ev.preventDefault();
-}
 
-var img = document.createElement("img");
 
-document.body.onmousedown = function(e) {
-    e = e || window.event;
-    var element = (e.target || e.srcElement);
-    var elem = getNode(element);
-
-    if (elem) {
-        html2canvas(elem).then(function(canvas) {
-            img.src = canvas.toDataURL("image/png");
-        });
-    }
-
-    function getNode(element) {
-        if (element.getAttribute("draggable") == "true") {
-            return element;
-        } else if ($(element).is("body")) {
-            return null;
-        } else {
-            return getNode(element.parentNode);
-        }
-    }
-}
-
-function drag(ev) {
-    ev.dataTransfer.setData("text/html", ev.target.id);
-    ev.dataTransfer.setDragImage(img, img.naturalWidth / 2, img.naturalHeight / 2);
-    $('[data-toggle=popover]').each(function() {
-        $(this).popover('hide');
-    });
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    ev.stopPropagation();
-    // Update behaviour here
-    if (!ev.target.getAttribute("ondrop")) {
-        //return false;
-    }
-    var _data = ev.dataTransfer.getData("text/html");
-    // ev.target.appendChild(document.getElementById(data));
-    var nodeCopy = document.getElementById(_data).cloneNode(true);
-    newId++;
-    nodeCopy.id = newId; /* We cannot use the same ID */
-    nodeCopy.setAttribute("data-toggle", "popover");
-    nodeCopy.setAttribute("data-placement", "right");
-    // chipl initiated popover before first click
-    // 1. Create template for associated popover
-    nodeCopy.controlType = nodeCopy.getAttribute("data-controlType");
-    nodeCopy.attribute = {};
-    for (var i in data) {
-        if (data[i]["Input Type"] == nodeCopy.controlType) {
-            for (var att in data[i]["fields"]) {
-                nodeCopy.attribute[att] = data[i]["fields"][att];
-            }
-        }
-    }
-    nodeCopy.setted = false;
-    var popoverContent = createAttributePanel(nodeCopy);
-    // 2. Create popover
-    $(nodeCopy).popover({
-        html: true,
-        trigger: 'click',
-        title: nodeCopy.controlType,
-        content: function() {
-            $('[data-toggle=popover]').each(function() {
-                // hide any open popovers when the anywhere else in the body is clicked
-                // // if (!$(this).is(evt.target) && $(this).has(evt.target).length === 0 && $('.popover').has(evt.target).length === 0) {  
-                if (this != nodeCopy) {
-                    $(this).popover('hide');
-                }
-            });
-
-            //  console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
-            //  console.log('clicked object: ', nodeCopy.id, nodeCopy);
-            return popoverContent;
-        }
-    });
-    // ev.target.appendChild(nodeCopy);
-    document.querySelector("#div2").appendChild(nodeCopy);
-}
 // Sortable function
 $(function() {
         var sortableDiv = document.querySelector("#div2");
         // console.log(sortableDiv);
         $(sortableDiv).sortable({
-            receive: function(e, ui) { sortableIn = 1; },
+            // connectWith: ".connectedSortable",
+            receive: function(e, ui) {
+                console.log("receive: ", sortableIn);
+                sortableIn = 1;
+
+            },
             start: function(e, ui) {
                 // modify ui.placeholder however you like
                 // ui.placeholder.html("I'm modifying the placeholder element!");
@@ -104,8 +26,16 @@ $(function() {
 
             },
             placeholder: "ui-sortable-placeholder",
-            over: function(e, ui) { sortableIn = 1; },
-            out: function(e, ui) { sortableIn = 0; },
+            receive: function(e, ui) {
+                ui.sender.sortable("cancel");
+            },
+            over: function(e, ui) {
+                sortableIn = 1;
+                // console.log("over from div2: ", sortableIn);
+            },
+            out: function(e, ui) {                
+                sortableIn = 0;                
+            },
             beforeStop: function(e, ui) {
                 if (sortableIn == 0) {
                     //ui.item.remove();
@@ -116,11 +46,58 @@ $(function() {
                         $(this).popover('hide');
                     });
                     ui.item.remove();
-                    //console.log("may remove item here", ui.item.context);
                 }
+                // console.log("may remove item here", ui.item.context, sortableIn);
             }
         });
         $(sortableDiv).disableSelection();
+        $("#div1").sortable({
+            connectWith: ".connectedSortable",
+            remove: function(e, ui) {
+                // 
+                var nodeCopy = ui.item.clone();
+                newId++;
+                nodeCopy.id = newId; /* We cannot use the same ID */                
+                nodeCopy.attr("data-toggle", "popover");
+                nodeCopy.attr("data-placement", "right");
+                // chipl initiated popover before first click
+                // 1. Create template for associated popover
+                nodeCopy.controlType = nodeCopy.attr("data-controlType");
+                nodeCopy.attribute = {};
+                for (var i in data) {
+                    if (data[i]["Input Type"] == nodeCopy.controlType) {
+                        for (var att in data[i]["fields"]) {
+                            nodeCopy.attribute[att] = data[i]["fields"][att];
+                        }
+                    }
+                }
+                nodeCopy.setted = false;
+                var popoverContent = createAttributePanel(nodeCopy);
+                // 2. Create popover
+                $(nodeCopy).popover({
+                    html: true,
+                    trigger: 'click',
+                    title: nodeCopy.controlType,
+                    content: function() {
+                        $('[data-toggle=popover]').each(function() {
+                            // hide any open popovers when the anywhere else in the body is clicked                            
+                            if (this != nodeCopy.get(0)) {
+                                $(this).popover('hide');
+                            }
+                        });
+                        //  console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
+                        //  console.log('clicked object: ', nodeCopy.id, nodeCopy);
+                        return popoverContent;
+                    }
+                });
+                //nodeCopy.preventDefault;
+                nodeCopy.appendTo('#div2');
+                $(this).sortable('cancel');
+            },
+            receive: function(e, ui) {
+                ui.sender.sortable("cancel");
+            }
+        }).disableSelection();
     })
     // Create controls from JSON definition
 $(function CreateControlsTemplate() {
@@ -129,7 +106,7 @@ $(function CreateControlsTemplate() {
         createSingleControlGroup(data[i]);
         //console.log("-----------");
     }
-     setAttributeName();
+    setAttributeName();
 })
 
 function createSingleControlGroup(template) {
@@ -139,7 +116,7 @@ function createSingleControlGroup(template) {
     container_div.classList.add("control");
     container_div.setAttribute("draggable", "true");
     container_div.id = newId;
-    container_div.addEventListener("dragstart", drag, false);
+    // container_div.addEventListener("dragstart", drag, false);
     //2. Create detail Element
     var label_cover = document.createElement("div");
     var label = document.createElement("Label");
@@ -339,7 +316,7 @@ function createAttributePanel(nodeCopy) {
                 input.classList.add("col-md-6");
                 input.classList.add("col-lg-6");
                 input.type = fileds[item]["Input Type"];
-                input.addEventListener("change", changeControlAttribute,false);
+                input.addEventListener("change", changeControlAttribute, false);
                 row.appendChild(label);
                 row.appendChild(input);
                 main_panel.appendChild(row);
@@ -404,7 +381,7 @@ function createAttributePanel(nodeCopy) {
     function changeControlAttribute(evt) {
         //console.log(this.getAttribute("data-controlType"));
         var ctrType = this.getAttribute("data-controlType");
-        var controls = nodeCopy.querySelectorAll("[data-controlType]");
+        var controls = nodeCopy.get(0).querySelectorAll("[data-controlType]");
         for (var elem in controls) {
             //console.log(controls[elem]);
             if (controls[elem] instanceof Node && controls[elem].getAttribute("data-controltype") == ctrType) {
@@ -449,9 +426,10 @@ function createAttributePanel(nodeCopy) {
 }
 
 function setAttributeName() {
-    var legent = document.querySelector("#SetsName");
-    legent.setAttribute("data-toggle", "popover");
-    legent.setAttribute("data-placement", "right");
+    // var legent = document.querySelector("#SetsName");
+    var legent = $("#SetsName");
+    legent.attr("data-toggle", "popover");
+    legent.attr("data-placement", "right");
     //legent.controlType = legent.getAttribute("data-controlType");
     legent.attribute = {};
     for (var i in data) {
@@ -482,7 +460,6 @@ function setAttributeName() {
                     $(this).popover('hide');
                 }
             });
-
             //  console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
             //  console.log('clicked object: ', nodeCopy.id, nodeCopy);
             return _Content;
