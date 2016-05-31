@@ -283,8 +283,6 @@ function createAttributePanel(nodeCopy) {
 
     var controlType = nodeCopy.controlType;
     var fileds = nodeCopy.attribute;
-    //console.log("controlType", controlType);
-    //console.log("fileds", fileds);
 
     var main_panel = document.createElement('main_panel');
     main_panel.classList.add("col-md-12");
@@ -308,13 +306,18 @@ function createAttributePanel(nodeCopy) {
 
             if (item == "required") {
                 var row = document.createElement("div");
-                row.classList.add("row");
+                // row.classList.add("row");
                 row.classList.add("clearfix");
+                row.style.float = "left";
+                row.style.width = "100%";
+                row.style["padding-top"] = "7px";
                 label.classList.remove("col-lg-12");
                 label.classList.remove("col-md-12");
                 label.classList.add("col-lg-6");
                 label.classList.add("col-md-6");
                 label.innerHTML = "Require";
+                input.classList.remove("col-lg-12");
+                input.classList.remove("col-md-12");
                 input.classList.add("col-md-6");
                 input.classList.add("col-lg-6");
                 input.type = fileds[item]["Input Type"];
@@ -358,23 +361,25 @@ function createAttributePanel(nodeCopy) {
     var hr = document.createElement("hr");
     hr.setAttribute("style", "width: 100%;display: block;float: left;");
     main_panel.appendChild(hr);
-    var save = document.createElement("button");
-    save.classList.add("btn");
-    save.classList.add("btn-danger");
-    save.innerHTML = "Save";
+    var closeBnt = document.createElement("button");
+    closeBnt.classList.add("btn");
+    closeBnt.classList.add("btn-primary");
+    closeBnt.innerHTML = "Close";
+    closeBnt.addEventListener("click", function(evt) {
+        $('[data-toggle=popover]').each(function() {
+            $(this).popover('hide');
+        });
+    }, false);
 
     var controlHandler = document.createElement("div");
-    controlHandler.classList.add("row");
-    var cancel = document.createElement("button");
-    cancel.classList.add("btn");
-    cancel.classList.add("btn-info")
-    cancel.innerHTML = "Cancel";
+    controlHandler.style["text-align"] = "center";
+    controlHandler.style["padding-bottom"] = "15px"
 
-    controlHandler.appendChild(save);
-    controlHandler.appendChild(cancel);
+    controlHandler.appendChild(closeBnt);
 
     var cover = document.createElement("cover");
     cover.classList.add("row");
+    cover.style.float = "left";
     main_panel.appendChild(controlHandler);
     cover.appendChild(main_panel);
     // Test
