@@ -48,7 +48,7 @@ $(function() {
                 }
             }
         });
-        $(sortableDiv).disableSelection();
+        
         $("#div1").sortable({
             connectWith: ".connectedSortable",
             remove: function(e, ui) {
@@ -389,7 +389,7 @@ function createAttributePanel(nodeCopy) {
         var ctrType = this.getAttribute("data-controlType");
         var controls;
         if (nodeCopy instanceof Node) {
-            controls = nodeCopy.querySelectorAll("[data-controlType]");
+            controls = $(nodeCopy).get(0).querySelectorAll("[data-controlType]");
         } else {
             controls = nodeCopy.get(0).querySelectorAll("[data-controlType]");
         }
@@ -430,6 +430,9 @@ function createAttributePanel(nodeCopy) {
                 }
             }
         }
+        // Saving attributes in element
+        
+        //
     }
     return cover;
 }
