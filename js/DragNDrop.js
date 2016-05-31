@@ -380,13 +380,11 @@ function createAttributePanel(nodeCopy) {
     var cover = document.createElement("cover");
     cover.classList.add("row");
     cover.style.float = "left";
+    cover.style.padding = "15px";
     main_panel.appendChild(controlHandler);
     cover.appendChild(main_panel);
-    // Test
-    //  document.querySelector("#testPanel").appendChild(cover);
 
     function changeControlAttribute(evt) {
-        //console.log(this.getAttribute("data-controlType"));
         var ctrType = this.getAttribute("data-controlType");
         var controls;
         if (nodeCopy instanceof Node) {
@@ -394,9 +392,7 @@ function createAttributePanel(nodeCopy) {
         } else {
             controls = nodeCopy.get(0).querySelectorAll("[data-controlType]");
         }
-        // console.log("is Dom: ", evt.nodeType, "is jquery object", evt.jquery, controls);
         for (var elem in controls) {
-            //console.log(controls[elem]);
             if (controls[elem] instanceof Node && controls[elem].getAttribute("data-controltype") == ctrType) {
                 if (ctrType == "options") {
                     var optArr = $(this).val().split('\n');
@@ -406,9 +402,6 @@ function createAttributePanel(nodeCopy) {
                     while (controls[elem].firstChild) {
                         controls[elem].removeChild(controls[elem].firstChild);
                     }
-
-                    // console.log(controls[elem]);
-
                     var inputType = controls[elem].parentNode.getAttribute("data-controlType");
                     console.log(inputType);
                     var input = document.createElement("input");
@@ -430,10 +423,8 @@ function createAttributePanel(nodeCopy) {
                 } else {
                     controls[elem].innerHTML = this.value;
                 }
-
             }
         }
-        //receiver = nodeCopy.querySelector([queryStr]);
     }
     return cover;
 }
@@ -443,7 +434,6 @@ function setAttributeName() {
     // var legent = $(_legent);
     legent.setAttribute("data-toggle", "popover");
     legent.setAttribute("data-placement", "right");
-    //legent.controlType = legent.getAttribute("data-controlType");
     legent.attribute = {};
     legent.attribute["label"] = {
         "label": "Set Attributes Set Name",
