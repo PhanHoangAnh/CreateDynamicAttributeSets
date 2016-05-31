@@ -41,13 +41,11 @@ $(function() {
                     //ui.item.remove();
                     $(ui.item.context).popover('destroy');
                     $('[data-toggle=popover]').each(function() {
-                        // hide any open popovers when the anywhere else in the body is clicked
-                        // // if (!$(this).is(evt.target) && $(this).has(evt.target).length === 0 && $('.popover').has(evt.target).length === 0) {                     
+                        // hide any open popovers when the anywhere else in the body is clicked                        
                         $(this).popover('hide');
                     });
                     ui.item.remove();
                 }
-                // console.log("may remove item here", ui.item.context, sortableIn);
             }
         });
         $(sortableDiv).disableSelection();
@@ -96,6 +94,10 @@ $(function() {
             },
             receive: function(e, ui) {
                 ui.sender.sortable("cancel");
+            },
+            placeholder: "ui-sortable-placeholder",
+            out: function(event, ui) {
+                $('.placeholder').show();
             }
         }).disableSelection();
     })
@@ -438,13 +440,6 @@ function setAttributeName() {
     legent.setAttribute("data-placement", "right");
     //legent.controlType = legent.getAttribute("data-controlType");
     legent.attribute = {};
-    for (var i in data) {
-        if (data[i]["Input Type"] == legent.controlType) {
-            for (var att in data[i]["fields"]) {
-                legent.attribute[att] = data[i]["fields"][att];
-            }
-        }
-    }
     legent.attribute["label"] = {
         "label": "Set Attributes Set Name",
         "Input Type": "text",
@@ -460,14 +455,10 @@ function setAttributeName() {
         title: "Set Attributes Name",
         content: function() {
             $('[data-toggle=popover]').each(function() {
-                // hide any open popovers when the anywhere else in the body is clicked
-                // // if (!$(this).is(evt.target) && $(this).has(evt.target).length === 0 && $('.popover').has(evt.target).length === 0) {  
                 if (this != legent) {
                     $(this).popover('hide');
                 }
             });
-            //  console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
-            //  console.log('clicked object: ', nodeCopy.id, nodeCopy);
             return _Content;
         }
     });
