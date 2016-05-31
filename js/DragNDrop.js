@@ -143,6 +143,7 @@ function createSingleControlGroup(template) {
             if (template["placeholder"]) {
                 input.placeholder = template["placeholder"];
             }
+            input.setAttribute("data-controlType", "text");
             input_cover.appendChild(input);
             container_div.setAttribute("data-controlType", "text");
             break;
@@ -171,7 +172,6 @@ function createSingleControlGroup(template) {
             input.name = template["value"];
             if (template["fields"]["options"]) {
                 for (item in template["fields"]["options"]) {
-
                     input.classList.add("col-md-6");
                     input.classList.add("col-lg-6");
                     input.value = item;
@@ -190,6 +190,7 @@ function createSingleControlGroup(template) {
         case ("number"):
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
+            input.setAttribute("data-controlType", "number");
             input.type = "number";
             if (template["fields"]["min"]) {
                 input.min = template["fields"]["min"];
@@ -393,6 +394,10 @@ function createAttributePanel(nodeCopy) {
             controls = nodeCopy.get(0).querySelectorAll("[data-controlType]");
         }
         for (var elem in controls) {
+            // if (controls[elem] instanceof Node && ctrType == "placeholder" && controls[elem].type == "text"){
+            if (controls[elem] instanceof Node && ctrType == "placeholder" && (controls[elem].type == "text" || controls[elem].type == "number")) {
+                controls[elem].placeholder = this.value;
+            }
             if (controls[elem] instanceof Node && controls[elem].getAttribute("data-controltype") == ctrType) {
                 if (ctrType == "options") {
                     var optArr = $(this).val().split('\n');
