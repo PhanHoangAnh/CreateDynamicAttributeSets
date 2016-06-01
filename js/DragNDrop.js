@@ -48,7 +48,7 @@ $(function() {
                 }
             }
         });
-        
+
         $("#div1").sortable({
             connectWith: ".connectedSortable",
             remove: function(e, ui) {
@@ -83,8 +83,6 @@ $(function() {
                                 $(this).popover('hide');
                             }
                         });
-                        //  console.log('clicked object: ', nodeCopy.id, $(this).data('bs.popover'));
-                        //  console.log('clicked object: ', nodeCopy.id, nodeCopy);
                         return popoverContent;
                     }
                 });
@@ -106,7 +104,6 @@ $(function CreateControlsTemplate() {
     // body...
     for (i in data) {
         createSingleControlGroup(data[i]);
-        //console.log("-----------");
     }
     setAttributeName();
 })
@@ -370,6 +367,13 @@ function createAttributePanel(nodeCopy) {
         $('[data-toggle=popover]').each(function() {
             $(this).popover('hide');
         });
+        // update entire sortable
+        var sortableDiv = document.querySelector("#div2");
+        //console.log($(sortableDiv).sortable('toArray'));
+        var elementLists = sortableDiv.querySelectorAll("[id]");
+
+        console.log(elementLists)
+
     }, false);
 
     var controlHandler = document.createElement("div");
@@ -388,19 +392,30 @@ function createAttributePanel(nodeCopy) {
     function changeControlAttribute(evt) {
         var ctrType = this.getAttribute("data-controlType");
         var controls;
+        var htmlNodeCopy;
         if (nodeCopy instanceof Node) {
             controls = $(nodeCopy).get(0).querySelectorAll("[data-controlType]");
+            htmlNodeCopy = nodeCopy;
         } else {
             controls = nodeCopy.get(0).querySelectorAll("[data-controlType]");
+            htmlNodeCopy = nodeCopy.get(0);
+        }
+        if (!htmlNodeCopy["CUST"]) {
+            htmlNodeCopy["CUST"] = {};
         }
         for (var elem in controls) {
             // if (controls[elem] instanceof Node && ctrType == "placeholder" && controls[elem].type == "text"){
+            htmlNodeCopy["CUST"][ctrType] = this.value;
             if (controls[elem] instanceof Node && ctrType == "placeholder" && (controls[elem].type == "text" || controls[elem].type == "number")) {
                 controls[elem].placeholder = this.value;
             }
             if (controls[elem] instanceof Node && controls[elem].getAttribute("data-controltype") == ctrType) {
                 if (ctrType == "options") {
+                    // follow http://stackoverflow.com/questions/281264/remove-empty-elements-from-an-array-in-javascript
                     var optArr = $(this).val().split('\n');
+                    optArr = optArr.filter(function(n) {
+                        return n != "";
+                    });
                     //console.log(optArr);
                     var describe = controls[elem].querySelector("[data-controlType='describe']").cloneNode(true);
                     console.log(describe);
@@ -431,7 +446,7 @@ function createAttributePanel(nodeCopy) {
             }
         }
         // Saving attributes in element
-        
+
         //
     }
     return cover;
