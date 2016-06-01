@@ -367,13 +367,7 @@ function createAttributePanel(nodeCopy) {
         $('[data-toggle=popover]').each(function() {
             $(this).popover('hide');
         });
-        // update entire sortable
-        var sortableDiv = document.querySelector("#div2");
-        //console.log($(sortableDiv).sortable('toArray'));
-        var elementLists = sortableDiv.querySelectorAll("[id]");
-
-        console.log(elementLists)
-
+        saveElement();
     }, false);
 
     var controlHandler = document.createElement("div");
@@ -445,9 +439,6 @@ function createAttributePanel(nodeCopy) {
                 }
             }
         }
-        // Saving attributes in element
-
-        //
     }
     return cover;
 }
@@ -480,4 +471,11 @@ function setAttributeName() {
             return _Content;
         }
     });
+}
+
+function saveElement() {
+    // update entire sortable
+    var sortableDiv = document.querySelector("#div2");
+    var elementLists = sortableDiv.querySelectorAll("[id]");
+    console.log(elementLists)
 }
