@@ -77,11 +77,11 @@
     </style>
 
     <body>
-        <div class="container">
-            <h1> Create Attribute Set by Drag n Drop</h1>
-            <p>Chipl phase 01</p>
-        </div>
-        <hr>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Create Attribute Set by Drag n Drop</a>
+            </div>
+        </nav>
         <div class="container-fluid">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <fieldset class="scheduler-border">
@@ -96,8 +96,40 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">Input Types</legend>
-                    <div id="div1" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 connectedSortable">
-                        <!-- Controls Attribute start here -->
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active">
+                            <a href="#div1" role="tab" data-toggle="tab">
+                                <icon class="fa fa-home"></icon> Drag & Drop components
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#jsonoutput" role="tab" data-toggle="tab" onclick="saveElement()">
+                                <i class="fa fa-user"></i> JSON output
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#htmloutput" role="tab" data-toggle="tab">
+                                <i class="fa fa-envelope"></i> HTML output
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-conten">
+                        <div id="div1" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 connectedSortable tab-pane fade active in">
+                            <!-- Controls Attribute start here -->
+                        </div>
+                        <div id="jsonoutput" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 tab-pane fade ">
+                            <!-- Controls Attribute start here -->
+                            <pre id = "printJSON" class="container-fluid">
+                                JSON Output
+                            </pre>
+                        </div>
+                        <div id="htmloutput" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 tab-pane fade">
+                            <!-- Controls Attribute start here -->
+                            <div class="container-fluid">
+                                Html Output
+                            </div>
+                        </div>
                     </div>
             </div>
             </fieldset>

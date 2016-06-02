@@ -477,5 +477,15 @@ function saveElement() {
     // update entire sortable
     var sortableDiv = document.querySelector("#div2");
     var elementLists = sortableDiv.querySelectorAll("[id]");
-    console.log(elementLists)
+    var printedList = [];
+    for (var elem in elementLists) {
+        if (elementLists[elem]["CUST"]) {
+            var jsonObj = {}
+            jsonObj["data-controlType"] = elementLists[elem].getAttribute("data-controlType");
+            jsonObj["attributes"] = elementLists[elem]["CUST"];
+            printedList.push(jsonObj);
+        }
+    }
+    //console.log(printedList);
+    document.getElementById("printJSON").innerHTML = JSON.stringify(printedList, undefined, 2);
 }
