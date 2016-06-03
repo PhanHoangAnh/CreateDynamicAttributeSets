@@ -277,7 +277,7 @@ function createSingleControlGroup(template) {
     document.querySelector("#div1").appendChild(container_div);
 }
 
-function createAttributePanel(nodeCopy) {
+function createAttributePanel(nodeCopy, title) {
 
     var controlType = nodeCopy.controlType;
     var fileds = nodeCopy.attribute;
@@ -436,6 +436,9 @@ function createAttributePanel(nodeCopy) {
                     controls[elem].appendChild(describe);
                 } else {
                     controls[elem].innerHTML = this.value;
+                    if (title){
+                        compObj.AttributeSetsName = this.value;
+                    }
                 }
             }
         }
@@ -456,7 +459,7 @@ function setAttributeName() {
     }
 
     legent.setted = false;
-    var _Content = createAttributePanel(legent);
+    var _Content = createAttributePanel(legent, true);
     // 2. Create popover
     $(legent).popover({
         html: true,
@@ -473,6 +476,7 @@ function setAttributeName() {
     });
 }
 
+var compObj = {}
 function saveElement() {
     // update entire sortable
     var sortableDiv = document.querySelector("#div2");
@@ -486,6 +490,6 @@ function saveElement() {
             printedList.push(jsonObj);
         }
     }
-    //console.log(printedList);
-    document.getElementById("printJSON").innerHTML = JSON.stringify(printedList, undefined, 2);
+    compObj.components = printedList
+    document.getElementById("printJSON").innerHTML = JSON.stringify(compObj, undefined, 2);
 }
