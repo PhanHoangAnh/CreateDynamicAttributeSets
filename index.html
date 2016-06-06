@@ -8,8 +8,126 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
+    <script src= "https://cdn.rawgit.com/PhanHoangAnh/CreateDynamicAttributesSet/master/js/controls.js"></script>
+    <script src = "https://cdn.rawgit.com/PhanHoangAnh/CreateDynamicAttributesSet/master/js/DragNDrop.js"></script>
+    </head>
   <body>
+    <style type="text/css" media="screen">
+    fieldset.scheduler-border {
+        border: 1px groove #ddd !important;
+        padding: 0 1.4em 1.4em 1.4em !important;
+        margin: 0 0 1.5em 0 !important;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+    
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width: auto;
+        padding: 0 10px;
+        border-bottom: none;
+    }
+    
+    #div1,
+    #div2 {
+        /*  float: left;
+        width: 100px;
+        height: 35px;
+        margin: 10px;
+        padding: 10px;*/
+        /*border: 1px solid #aaaaaa;*/
+        min-height: 50px;
+        padding: 30px 20px 50px;
+    }
+    
+    .container {
+        padding: 20px;
+    }
+    
+    .form-control {
+        width: 120px;
+    }
+    
+    .popover {
+        min-width: 400px;
+    }
+    
+    .control {
+        padding: 10px;
+    }
+    
+    .ui-sortable-placeholder {
+        border: 1px dashed #aaa;
+        height: 45px;
+        width: 100%;
+        background: #fafafa;
+    }
+    
+    main_panel >label {
+        margin-top: 7px;
+    }
+    
+    .popover-title {
+        background: #00A600;
+        text-transform: capitalize;
+        font-weight: 700;
+        color: #fff;
+    }
+    </style>
+
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Create Attribute Set by Drag n Drop</a>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Create Attribute Sets </legend>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="SetsName">
+                        <legend data-controltype="label">Set's Name</legend>
+                    </div>
+                    <div id="div2" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 connectedSortable"></div>
+                </fieldset>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Input Types</legend>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active">
+                            <a href="#div1" role="tab" data-toggle="tab">
+                                <icon class="fa fa-home"></icon> Drag & Drop components
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#jsonoutput" role="tab" data-toggle="tab" onclick="saveElement()">
+                                <i class="fa fa-user"></i> JSON output
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="div1" class="connectedSortable tab-pane fade active in">
+                            <!-- Controls Attribute start here -->
+                        </div>
+                        <div id="jsonoutput" class=" tab-pane fade " style="margin-top:25px">
+                            <!-- Controls Attribute start here -->
+                            <pre id="printJSON" class="container-fluid">
+                                JSON Output
+                            </pre>
+                        </div>
+                    </div>
+            </div>
+            </fieldset>
+        </div>
+        </div>
+        <!--     <a href="http://www.bootply.com/mW09b0bQcE">Edit on Bootply</a> -->
+        </div>
+        <div id="testPanel" class="ontainer-fluid">
+        </div>
     <section class="page-header">
       <h1 class="project-name">Create Dynamic Attribute Sets</h1>
       <h2 class="project-tagline">Pure javascript/html component that allows everyone create Attribute set dynamically</h2>
