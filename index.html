@@ -1,25 +1,19 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Create Dynamic Attribute Sets by PhanHoangAnh</title>
+<html lang="en">
+
+<head>
+    <title>Create Attribute Set</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">-->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src= "https://cdn.rawgit.com/PhanHoangAnh/CreateDynamicAttributesSet/master/js/controls.js"></script>
-    <script src = "https://rawgit.com/PhanHoangAnh/CreateDynamicAttributesSet/master/js/DragNDrop.js"></script>
-  </head>
-  <body>
+    <!-- <script src="./js/controls.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/DragNDrop.js" type="text/javascript" charset="utf-8" async defer></script> -->
+    <script src="https://cdn.rawgit.com/PhanHoangAnh/CreateDynamicAttributesSet/master/js/controls.js"></script>
+    <script src="https://rawgit.com/PhanHoangAnh/CreateDynamicAttributesSet/master/js/DragNDrop.js"></script>
     <style type="text/css" media="screen">
-    body{
-      padding:0px;
-      margin:0px;
-    }
     fieldset.scheduler-border {
         border: 1px groove #ddd !important;
         padding: 0 1.4em 1.4em 1.4em !important;
@@ -82,29 +76,19 @@
         font-weight: 700;
         color: #fff;
     }
-    .page-header{
-      text-align: center;
-      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff5db1+0,ef017c+100;Pink+3D+%231 */
-      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#46e212+0,0c9926+100;Green+Flat+%231 */
-      background: rgb(70,226,18); /* Old browsers */
-      background: -moz-linear-gradient(left,  rgba(70,226,18,1) 0%, rgba(12,153,38,1) 100%); /* FF3.6-15 */
-      background: -webkit-linear-gradient(left,  rgba(70,226,18,1) 0%,rgba(12,153,38,1) 100%); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to right,  rgba(70,226,18,1) 0%,rgba(12,153,38,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#46e212', endColorstr='#0c9926',GradientType=1 ); /* IE6-9 */
-      margin :0px;
-    }
     </style>
-    <section class="page-header">
-      <h1 class="project-name">Create Dynamic Attribute Sets</h1>
-      <h2 class="project-tagline">Pure javascript/html component that allows everyone create Attribute set dynamically</h2>
-      <a href="https://github.com/PhanHoangAnh/CreateDynamicAttributesSet" class="btn">View on GitHub</a>
-      <a href="https://github.com/PhanHoangAnh/CreateDynamicAttributesSet/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/PhanHoangAnh/CreateDynamicAttributesSet/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
 
-    <section class="main-content">
-    
-<div class="container-fluid">
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Create Attribute Set by Drag n Drop</a>
+            </div>
+            <br>
+            <a href="https://github.com/PhanHoangAnh/CreateDynamicAttributesSet" class="btn">View on GitHub</a>
+            <a href="https://github.com/PhanHoangAnh/CreateDynamicAttributesSet/zipball/master" class="btn">Download .zip</a>
+            <a href="https://github.com/PhanHoangAnh/CreateDynamicAttributesSet/tarball/master" class="btn">Download .tar.gz</a>
+        </nav>
+        <div class="container-fluid">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">Create Attribute Sets </legend>
@@ -144,36 +128,12 @@
                 </fieldset>
             </div>
         </div>
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
+        <!--     <a href="http://www.bootply.com/mW09b0bQcE">Edit on Bootply</a> -->
+        <div id="testPanel" class="ontainer-fluid">
+        </div>
+        <!--/container-fluid-->
+    </body>
+    <script type="text/javascript" charset="utf-8" async defer>
+    </script>
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
-
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/PhanHoangAnh/CreateDynamicAttributesSet">Create Dynamic Attribute Sets</a> is maintained by <a href="https://github.com/PhanHoangAnh">PhanHoangAnh</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
-  </body>
 </html>
