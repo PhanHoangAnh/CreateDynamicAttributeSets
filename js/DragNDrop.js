@@ -61,7 +61,8 @@ $(function() {
                 // chipl initiated popover before first click
                 // 1. Create template for associated popover
                 // Exception for combobox
-                if (nodeCopy[0].getElementsByTagName("datalist")) {
+                if (nodeCopy[0].getElementsByTagName("datalist").length !=0) {
+                    console.log(nodeCopy[0].getElementsByTagName("datalist").length);
                     nodeCopy[0].getElementsByTagName("datalist")[0].id = newId + "list";
                     var input = nodeCopy[0].getElementsByTagName("input")[0];
                     input.setAttribute("list", newId + "list");
