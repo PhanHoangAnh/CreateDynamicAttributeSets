@@ -436,7 +436,7 @@ function createAttributePanel(nodeCopy, title) {
                     controls[elem].appendChild(describe);
                 } else {
                     controls[elem].innerHTML = this.value;
-                    if (title){
+                    if (title) {
                         compObj.AttributeSetsName = this.value;
                     }
                 }
@@ -477,6 +477,7 @@ function setAttributeName() {
 }
 
 var compObj = {}
+
 function saveElement() {
     // update entire sortable
     var sortableDiv = document.querySelector("#div2");
