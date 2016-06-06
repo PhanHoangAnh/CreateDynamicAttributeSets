@@ -55,11 +55,18 @@ $(function() {
                 // 
                 var nodeCopy = ui.item.clone();
                 newId++;
-                nodeCopy.id = newId; /* We cannot use the same ID */
+                nodeCopy[0].id = newId; /* We cannot use the same ID */
                 nodeCopy.attr("data-toggle", "popover");
                 nodeCopy.attr("data-placement", "right");
                 // chipl initiated popover before first click
                 // 1. Create template for associated popover
+                // Exception for combobox
+                if (nodeCopy[0].getElementsByTagName("datalist")) {
+                    nodeCopy[0].getElementsByTagName("datalist")[0].id = newId + "list";
+                    var input = nodeCopy[0].getElementsByTagName("input")[0];
+                    input.setAttribute("list", newId + "list");
+                }
+                //
                 nodeCopy.controlType = nodeCopy.attr("data-controlType");
                 nodeCopy.attribute = {};
                 for (var i in data) {
@@ -143,6 +150,19 @@ function createSingleControlGroup(template) {
             input.setAttribute("data-controlType", "text");
             input_cover.appendChild(input);
             container_div.setAttribute("data-controlType", "text");
+            // in case for editable combobox, create datalist for this input
+            if (template["fields"]["options"]) {
+                var datalistId = newId + "datalist";
+                input.setAttribute("list", datalistId);
+                var datalist = document.createElement("datalist")
+                datalist.id = datalistId;
+                for (item in template["fields"]["options"]) {
+                    var option = document.createElement("option");
+                    option.setAttribute("value", template["fields"]["options"][item]);
+                    datalist.appendChild(option);
+                }
+                input_cover.appendChild(datalist);
+            }
             break;
         case ("radio"):
             input.type = "radio";
@@ -403,6 +423,26 @@ function createAttributePanel(nodeCopy, title) {
             if (controls[elem] instanceof Node && ctrType == "placeholder" && (controls[elem].type == "text" || controls[elem].type == "number")) {
                 controls[elem].placeholder = this.value;
             }
+            if (controls[elem] instanceof Node && ctrType == "options" && (controls[elem].type == "text")) {
+                var optArr = $(this).val().split('\n');
+                optArr = optArr.filter(function(n) {
+                    return n != "";
+                });
+                // Select and update datalist                
+                var datalistId = controls[elem].getAttribute("list");
+                var datalist = document.getElementById(datalistId);
+                while (datalist.firstChild) {
+                    datalist.removeChild(datalist.firstChild);
+                }
+
+                for (var item in optArr) {
+                    var option = document.createElement("option");
+                    option.setAttribute("value", optArr[item])
+                    datalist.appendChild(option);
+                }
+                console.log(datalist);
+
+            }
             if (controls[elem] instanceof Node && controls[elem].getAttribute("data-controltype") == ctrType) {
                 if (ctrType == "options") {
                     // follow http://stackoverflow.com/questions/281264/remove-empty-elements-from-an-array-in-javascript
@@ -412,12 +452,10 @@ function createAttributePanel(nodeCopy, title) {
                     });
                     //console.log(optArr);
                     var describe = controls[elem].querySelector("[data-controlType='describe']").cloneNode(true);
-                    console.log(describe);
                     while (controls[elem].firstChild) {
                         controls[elem].removeChild(controls[elem].firstChild);
                     }
                     var inputType = controls[elem].parentNode.getAttribute("data-controlType");
-                    console.log(inputType);
                     var input = document.createElement("input");
                     input.type = inputType;
                     for (var item in optArr) {

@@ -31,6 +31,43 @@ var data = [{
             }
         }
     }, {
+        "label": "Editable Combobox",
+        "Input Type": "text",
+        "value": "Text Input",
+        "placeholder": "placeholder",
+        "fields": {
+            "id": {
+                "label": "ID / Name",
+                "Input Type": "text",
+                "value": "textinput"
+            },
+            "label": {
+                "label": "Label Text",
+                "Input Type": "text",
+                "value": "Text Input"
+            },
+            "options": {
+                "1": "value 1",
+                "2": "value 2",
+                "3": "value 3",
+            },
+            "placeholder": {
+                "label": "Placeholder",
+                "Input Type": "text",
+                "value": "placeholder"
+            },
+            "describe": {
+                "label": "More info",
+                "Input Type": "text",
+                "value": "Describe attribute"
+            },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
+        }
+    }, {
         "label": "Radio",
         "Input Type": "radio",
         "value": "Option",
@@ -108,7 +145,8 @@ var data = [{
                 "label": "Label Text",
                 "Input Type": "text",
                 "value": "Text Input"
-            },"describe": {
+            },
+            "describe": {
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
