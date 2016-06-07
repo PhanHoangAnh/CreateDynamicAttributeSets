@@ -31,8 +31,79 @@ var data = [{
             }
         }
     }, {
+        "label": "Text Area",
+        "Input Type": "textarea",
+        "value": "Text Input",
+        "placeholder": "placeholder",
+        "fields": {
+            "id": {
+                "label": "ID / Name",
+                "Input Type": "text",
+                "value": "textinput"
+            },
+            "label": {
+                "label": "Label Text",
+                "Input Type": "text",
+                "value": "Text Input"
+            },
+            "placeholder": {
+                "label": "Placeholder",
+                "Input Type": "text",
+                "value": "placeholder"
+            },
+            "describe": {
+                "label": "More info",
+                "Input Type": "text",
+                "value": "Describe attribute"
+            },
+            "cols": {
+                "label": "cols",
+                "Input Type": "number"
+            },
+            "rows": {
+                "label": "rows",
+                "Input Type": "number"
+            },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
+        }
+    }, {
+        "label": "Select",
+        "Input Type": "select",
+        "value": "Text Input",
+        "fields": {
+            "id": {
+                "label": "ID / Name",
+                "Input Type": "text",
+                "value": "textinput"
+            },
+            "label": {
+                "label": "Label Text",
+                "Input Type": "text",
+                "value": "Text Input"
+            },
+            "describe": {
+                "label": "More info",
+                "Input Type": "text",
+                "value": "Describe attribute"
+            },
+            "options": {
+                "1": "value 1",
+                "2": "value 2",
+                "3": "value 3",
+            },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
+        }
+    }, {
         "label": "Editable Combobox",
-        "Input Type": "text",
+        "Input Type": "combobox",
         "value": "Text Input",
         "placeholder": "placeholder",
         "fields": {

@@ -166,12 +166,36 @@ function createSingleControlGroup(template) {
                 input_cover.appendChild(datalist);
             }
             break;
+        case ("combobox"):
+            input.classList.add("col-md-12");
+            input.classList.add("col-lg-12");
+            input.classList.add("form-control");
+            input.type = "combobox";
+            if (template["placeholder"]) {
+                input.placeholder = template["placeholder"];
+            }
+            input.setAttribute("data-controlType", "combobox");
+            input_cover.appendChild(input);
+            container_div.setAttribute("data-controlType", "combobox");
+            // in case for editable combobox, create datalist for this input
+            if (template["fields"]["options"]) {
+                var datalistId = newId + "datalist";
+                input.setAttribute("list", datalistId);
+                var datalist = document.createElement("datalist")
+                datalist.id = datalistId;
+                for (item in template["fields"]["options"]) {
+                    var option = document.createElement("option");
+                    option.setAttribute("value", template["fields"]["options"][item]);
+                    datalist.appendChild(option);
+                }
+                input_cover.appendChild(datalist);
+            }
+            break;
         case ("select"):
             input = document.createElement("select");
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
             input.classList.add("form-control");
-            input.type = "select";
             if (template["fields"]["options"]) {
                 for (item in template["fields"]["options"]) {
                     var option = document.createElement("option");
@@ -181,6 +205,7 @@ function createSingleControlGroup(template) {
                 }
             }
             input_cover.appendChild(input);
+            input.setAttribute("data-controlType", "select");
             container_div.setAttribute("data-controlType", "select");
             break;
         case ("textarea"):
@@ -429,7 +454,6 @@ function createAttributePanel(nodeCopy, title) {
     var controlHandler = document.createElement("div");
     controlHandler.style["text-align"] = "center";
     controlHandler.style["padding-bottom"] = "15px"
-
     controlHandler.appendChild(closeBnt);
 
     var cover = document.createElement("cover");
@@ -454,11 +478,28 @@ function createAttributePanel(nodeCopy, title) {
             htmlNodeCopy["CUST"] = {};
         }
         for (var elem in controls) {
-            // if (controls[elem] instanceof Node && ctrType == "placeholder" && controls[elem].type == "text"){
+
             htmlNodeCopy["CUST"][ctrType] = this.value;
             if (controls[elem] instanceof Node && ctrType == "placeholder" && (controls[elem].type == "text" || controls[elem].type == "number")) {
                 controls[elem].placeholder = this.value;
             }
+            if (controls[elem] instanceof Node && ctrType == "options" && (controls[elem].type == "select-one")) {
+                var select = controls[elem];
+                var optArr = $(this).val().split('\n');
+                optArr = optArr.filter(function(n) {
+                    return n != "";
+                });
+                while (select.firstChild) {
+                    select.removeChild(select.firstChild);
+                }
+                for (var item in optArr) {
+                    var option = document.createElement("option");
+                    option.setAttribute("value", item);
+                    option.innerHTML = optArr[item];
+                    select.appendChild(option);
+                }
+            }
+
             if (controls[elem] instanceof Node && ctrType == "options" && (controls[elem].type == "text")) {
                 var optArr = $(this).val().split('\n');
                 optArr = optArr.filter(function(n) {
@@ -476,8 +517,6 @@ function createAttributePanel(nodeCopy, title) {
                     option.setAttribute("value", optArr[item])
                     datalist.appendChild(option);
                 }
-                console.log(datalist);
-
             }
             if (controls[elem] instanceof Node && controls[elem].getAttribute("data-controltype") == ctrType) {
                 if (ctrType == "options") {
