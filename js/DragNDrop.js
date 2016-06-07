@@ -61,7 +61,7 @@ $(function() {
                 // chipl initiated popover before first click
                 // 1. Create template for associated popover
                 // Exception for combobox
-                if (nodeCopy[0].getElementsByTagName("datalist").length !=0) {
+                if (nodeCopy[0].getElementsByTagName("datalist").length != 0) {
                     console.log(nodeCopy[0].getElementsByTagName("datalist").length);
                     nodeCopy[0].getElementsByTagName("datalist")[0].id = newId + "list";
                     var input = nodeCopy[0].getElementsByTagName("input")[0];
@@ -144,6 +144,7 @@ function createSingleControlGroup(template) {
         case ("text"):
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
+            input.classList.add("form-control");
             input.type = "text";
             if (template["placeholder"]) {
                 input.placeholder = template["placeholder"];
@@ -164,6 +165,33 @@ function createSingleControlGroup(template) {
                 }
                 input_cover.appendChild(datalist);
             }
+            break;
+        case ("select"):
+            input = document.createElement("select");
+            input.classList.add("col-md-12");
+            input.classList.add("col-lg-12");
+            input.classList.add("form-control");
+            input.type = "select";
+            if (template["fields"]["options"]) {
+                for (item in template["fields"]["options"]) {
+                    var option = document.createElement("option");
+                    option.setAttribute("value", item);
+                    option.innerHTML = template["fields"]["options"][item];
+                    input.appendChild(option);
+                }
+            }
+            input_cover.appendChild(input);
+            container_div.setAttribute("data-controlType", "select");
+            break;
+        case ("textarea"):
+            input = document.createElement("textarea");
+            input.classList.add("col-md-12");
+            input.classList.add("col-lg-12");
+            input.classList.add("form-control");
+            input.type = "textarea";
+            input.setAttribute("data-controlType", "textarea");
+            input_cover.appendChild(input);
+            container_div.setAttribute("data-controlType", "textarea");
             break;
         case ("radio"):
             input.type = "radio";
@@ -208,6 +236,7 @@ function createSingleControlGroup(template) {
         case ("number"):
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
+            input.classList.add("form-control");
             input.setAttribute("data-controlType", "number");
             input.type = "number";
             if (template["fields"]["min"]) {
@@ -225,6 +254,7 @@ function createSingleControlGroup(template) {
         case ("date"):
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
+            input.classList.add("form-control");
             input.type = "date";
             if (template["placeholder"]) {
                 input.placeholder = template["placeholder"];
@@ -236,6 +266,7 @@ function createSingleControlGroup(template) {
         case ("color"):
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
+            input.classList.add("form-control");
             input.type = "color";
             if (template["placeholder"]) {
                 input.placeholder = template["placeholder"];
@@ -247,6 +278,7 @@ function createSingleControlGroup(template) {
         case ("range"):
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
+            input.classList.add("form-control");
             input.type = "range";
             if (template["fields"]["min"]) {
                 input.min = template["fields"]["min"];
@@ -263,6 +295,7 @@ function createSingleControlGroup(template) {
         case ("month"):
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
+            input.classList.add("form-control");
             input.type = "month";
             input_cover.appendChild(input);
             container_div.setAttribute("data-controlType", "month");
@@ -270,6 +303,7 @@ function createSingleControlGroup(template) {
         case ("week"):
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
+            input.classList.add("form-control");
             input.type = "week";
             input_cover.appendChild(input);
             container_div.setAttribute("data-controlType", "week");
@@ -277,6 +311,7 @@ function createSingleControlGroup(template) {
         case ("time"):
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
+            input.classList.add("form-control");
             input.type = "time";
             input_cover.appendChild(input);
             container_div.setAttribute("data-controlType", "time");
