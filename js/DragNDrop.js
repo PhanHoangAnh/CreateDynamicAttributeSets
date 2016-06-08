@@ -103,7 +103,7 @@ $(function() {
             out: function(event, ui) {
                 $('.placeholder').show();
             }
-        }).disableSelection();
+        });
     })
     // Create controls from JSON definition
 $(function CreateControlsTemplate() {
