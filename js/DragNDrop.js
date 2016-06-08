@@ -355,7 +355,6 @@ function createSingleControlGroup(template) {
     //Test
     var container = template["container"];
     document.getElementById(container).appendChild(container_div);
-    console.log(document.getElementById(container), container);
 }
 
 function createAttributePanel(nodeCopy, title) {
