@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<!--     <script src="./js/controls.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="./js/controls.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/DragNDrop.js" type="text/javascript" charset="utf-8" async defer></script> -->
     <script src="https://cdn.rawgit.com/PhanHoangAnh/CreateDynamicAttributesSet/master/js/controls.js"></script>
     <script src="https://rawgit.com/PhanHoangAnh/CreateDynamicAttributesSet/master/js/DragNDrop.js"></script>
@@ -46,7 +46,7 @@
     .container {
         padding: 20px;
     }
-/*    
+    /*    
     .form-control {
         width: 120px;
     }*/
@@ -95,7 +95,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="SetsName">
                         <legend data-controltype="label">Set's Name</legend>
                     </div>
-                    <div id="div2" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 connectedSortable"></div>
+                    <div id="div2" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
                 </fieldset>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -104,8 +104,18 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="active">
-                            <a href="#div1" role="tab" data-toggle="tab">
-                                <icon class="fa fa-home"></icon> Drag & Drop components
+                            <a href="#standardElement" role="tab" data-toggle="tab">
+                                <icon class="fa fa-home"></icon> Standard Elements
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#timeElements" role="tab" data-toggle="tab" onclick="saveElement()">
+                                <i class="fa fa-user"></i> Time Elements
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#otherElements" role="tab" data-toggle="tab" onclick="saveElement()">
+                                <i class="fa fa-user"></i> Other Elements
                             </a>
                         </li>
                         <li>
@@ -115,7 +125,13 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div id="div1" class="connectedSortable tab-pane fade active in">
+                        <div id="standardElement" class="connectedSortable tab-pane fade active in">
+                            <!-- Controls Attribute start here -->
+                        </div>
+                        <div id="timeElements" class="connectedSortable tab-pane fade">
+                            <!-- Controls Attribute start here -->
+                        </div>
+                        <div id="otherElements" class="connectedSortable tab-pane fade">
                             <!-- Controls Attribute start here -->
                         </div>
                         <div id="jsonoutput" class=" tab-pane fade " style="margin-top:25px">
