@@ -1,4 +1,5 @@
 var data = [{
+        "container" : "standardElement",
         "label": "Text Input",
         "Input Type": "text",
         "value": "Text Input",
@@ -31,10 +32,10 @@ var data = [{
             }
         }
     }, {
+        "container" : "standardElement",
         "label": "Text Area",
         "Input Type": "textarea",
         "value": "Text Input",
-        "placeholder": "placeholder",
         "fields": {
             "id": {
                 "label": "ID / Name",
@@ -45,11 +46,6 @@ var data = [{
                 "label": "Label Text",
                 "Input Type": "text",
                 "value": "Text Input"
-            },
-            "placeholder": {
-                "label": "Placeholder",
-                "Input Type": "text",
-                "value": "placeholder"
             },
             "describe": {
                 "label": "More info",
@@ -71,6 +67,7 @@ var data = [{
             }
         }
     }, {
+        "container" : "standardElement",
         "label": "Select",
         "Input Type": "select",
         "value": "Text Input",
@@ -102,6 +99,7 @@ var data = [{
             }
         }
     }, {
+        "container" : "standardElement",
         "label": "Editable Combobox",
         "Input Type": "combobox",
         "value": "Text Input",
@@ -139,6 +137,7 @@ var data = [{
             }
         }
     }, {
+        "container" : "standardElement",
         "label": "Radio",
         "Input Type": "radio",
         "value": "Option",
@@ -171,6 +170,7 @@ var data = [{
             }
         }
     }, {
+        "container" : "standardElement",
         "label": "Checkbox",
         "Input Type": "checkbox",
         "value": "Option",
@@ -202,6 +202,7 @@ var data = [{
             }
         }
     }, {
+        "container" : "standardElement",
         "label": "Number Input",
         "Input Type": "number",
         "value": "number",
@@ -217,6 +218,11 @@ var data = [{
                 "Input Type": "text",
                 "value": "Text Input"
             },
+            "placeholder": {
+                "label": "Placeholder",
+                "Input Type": "text",
+                "value": "placeholder"
+            },
             "describe": {
                 "label": "More info",
                 "Input Type": "text",
@@ -231,10 +237,10 @@ var data = [{
             }
         }
     }, {
+        "container" : "timeElements",
         "label": "Date Input",
         "Input Type": "date",
         "value": "date",
-        "placeholder": "date",
         "fields": {
             "id": {
                 "label": "ID / Name",
@@ -258,10 +264,10 @@ var data = [{
             }
         }
     }, {
+        "container" : "timeElements",
         "label": "Color Input",
         "Input Type": "color",
         "value": "color",
-        "placeholder": "color",
         "fields": {
             "id": {
                 "label": "ID / Name",
@@ -285,10 +291,10 @@ var data = [{
             }
         }
     }, {
+        "container" : "timeElements",
         "label": "Range Input",
         "Input Type": "range",
         "value": "range",
-        "placeholder": "range",
         "fields": {
             "id": {
                 "label": "ID / Name",
@@ -314,10 +320,10 @@ var data = [{
             }
         }
     }, {
+        "container" : "timeElements",
         "label": "Month Input",
         "Input Type": "month",
         "value": "month",
-        "placeholder": "month",
         "fields": {
             "id": {
                 "label": "ID / Name",
@@ -341,10 +347,10 @@ var data = [{
             }
         }
     }, {
+        "container" : "timeElements",
         "label": "Week Input",
         "Input Type": "week",
         "value": "week",
-        "placeholder": "week",
         "fields": {
             "id": {
                 "label": "ID / Name",
@@ -368,10 +374,10 @@ var data = [{
             }
         }
     }, {
+        "container" : "timeElements",
         "label": "Time Input",
         "Input Type": "time",
         "value": "time",
-        "placeholder": "time",
         "fields": {
             "id": {
                 "label": "ID / Name",

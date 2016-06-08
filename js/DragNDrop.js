@@ -1,7 +1,5 @@
 var newId = 0;
 
-
-
 // Sortable function
 $(function() {
         var sortableDiv = document.querySelector("#div2");
@@ -49,8 +47,8 @@ $(function() {
             }
         });
 
-        $("#div1").sortable({
-            connectWith: ".connectedSortable",
+        $(".connectedSortable").sortable({
+            connectWith: $(sortableDiv),
             remove: function(e, ui) {
                 // 
                 var nodeCopy = ui.item.clone();
@@ -355,7 +353,9 @@ function createSingleControlGroup(template) {
     input_cover.appendChild(span);
     container_div.appendChild(input_cover);
     //Test
-    document.querySelector("#div1").appendChild(container_div);
+    var container = template["container"];
+    document.getElementById(container).appendChild(container_div);
+    console.log(document.getElementById(container), container);
 }
 
 function createAttributePanel(nodeCopy, title) {
