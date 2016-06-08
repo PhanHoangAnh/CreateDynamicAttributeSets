@@ -328,7 +328,9 @@ function createSingleControlGroup(template) {
             break;
         case ("image"):
             input = document.createElement("img");
-            input.setAttribute("src","./materials/sample.jpg");
+            // input.setAttribute("src","./materials/sample.jpg");
+            // https://rawgit.com/PhanHoangAnh/CreateDynamicAttributeSets/master/materials/sample.jpg
+            input.setAttribute("src","https://rawgit.com/PhanHoangAnh/CreateDynamicAttributeSets/master/materials/sample.jpg");
             input.style.height = "auto";
             input.classList.add("col-md-12");
             input.classList.add("col-lg-12");
