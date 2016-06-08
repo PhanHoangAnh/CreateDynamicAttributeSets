@@ -1,5 +1,5 @@
 var data = [{
-        "container" : "standardElement",
+        "container": "standardElement",
         "label": "Text Input",
         "Input Type": "text",
         "value": "Text Input",
@@ -32,7 +32,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "standardElement",
+        "container": "standardElement",
         "label": "Text Area",
         "Input Type": "textarea",
         "value": "Text Input",
@@ -67,7 +67,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "standardElement",
+        "container": "standardElement",
         "label": "Select",
         "Input Type": "select",
         "value": "Text Input",
@@ -99,7 +99,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "standardElement",
+        "container": "standardElement",
         "label": "Editable Combobox",
         "Input Type": "combobox",
         "value": "Text Input",
@@ -137,7 +137,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "standardElement",
+        "container": "standardElement",
         "label": "Radio",
         "Input Type": "radio",
         "value": "Option",
@@ -170,7 +170,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "standardElement",
+        "container": "standardElement",
         "label": "Checkbox",
         "Input Type": "checkbox",
         "value": "Option",
@@ -202,7 +202,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "standardElement",
+        "container": "standardElement",
         "label": "Number Input",
         "Input Type": "number",
         "value": "number",
@@ -237,7 +237,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "timeElements",
+        "container": "timeElements",
         "label": "Date Input",
         "Input Type": "date",
         "value": "date",
@@ -264,7 +264,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "timeElements",
+        "container": "timeElements",
         "label": "Color Input",
         "Input Type": "color",
         "value": "color",
@@ -291,7 +291,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "timeElements",
+        "container": "timeElements",
         "label": "Range Input",
         "Input Type": "range",
         "value": "range",
@@ -320,7 +320,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "timeElements",
+        "container": "timeElements",
         "label": "Month Input",
         "Input Type": "month",
         "value": "month",
@@ -347,7 +347,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "timeElements",
+        "container": "timeElements",
         "label": "Week Input",
         "Input Type": "week",
         "value": "week",
@@ -374,7 +374,7 @@ var data = [{
             }
         }
     }, {
-        "container" : "timeElements",
+        "container": "timeElements",
         "label": "Time Input",
         "Input Type": "time",
         "value": "time",
@@ -393,6 +393,108 @@ var data = [{
                 "label": "More info",
                 "Input Type": "text",
                 "value": "Describe attribute"
+            },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
+        }
+    }, {
+        "container": "otherElements",
+        "label": "Image",
+        "Input Type": "image",
+        "fields": {
+            "id": {
+                "label": "ID / Name",
+                "Input Type": "text",
+                "value": "textinput"
+            },
+            "label": {
+                "label": "Label Text",
+                "Input Type": "text",
+                "value": "Text Input"
+            },
+            "describe": {
+                "label": "More info",
+                "Input Type": "text",
+                "value": "Describe attribute"
+            },
+            "height": {
+                "label": "Height ratio",
+                "Input Type": "number"
+            },
+            "weight": {
+                "label": "Weight ratio",
+                "Input Type": "number"
+            },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
+        }
+    }, {
+        "container": "otherElements",
+        "label": "Map",
+        "Input Type": "map",
+        "fields": {
+            "id": {
+                "label": "ID / Name",
+                "Input Type": "text",
+                "value": "textinput"
+            },
+            "label": {
+                "label": "Label Text",
+                "Input Type": "text",
+                "value": "Text Input"
+            },
+            "describe": {
+                "label": "More info",
+                "Input Type": "text",
+                "value": "Describe attribute"
+            },
+            "height": {
+                "label": "Height ratio",
+                "Input Type": "number"
+            },
+            "weight": {
+                "label": "Weight ratio",
+                "Input Type": "number"
+            },
+            "required": {
+                "label": "Required",
+                "Input Type": "checkbox",
+                "value": false
+            }
+        }
+    }, {
+        "container": "otherElements",
+        "label": "Video",
+        "Input Type": "video",
+        "fields": {
+            "id": {
+                "label": "ID / Name",
+                "Input Type": "text",
+                "value": "textinput"
+            },
+            "label": {
+                "label": "Label Text",
+                "Input Type": "text",
+                "value": "Text Input"
+            },
+            "describe": {
+                "label": "More info",
+                "Input Type": "text",
+                "value": "Describe attribute"
+            },
+            "height": {
+                "label": "Height ratio",
+                "Input Type": "number"
+            },
+            "weight": {
+                "label": "Weight ratio",
+                "Input Type": "number"
             },
             "required": {
                 "label": "Required",

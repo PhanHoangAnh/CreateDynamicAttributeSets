@@ -150,19 +150,6 @@ function createSingleControlGroup(template) {
             input.setAttribute("data-controlType", "text");
             input_cover.appendChild(input);
             container_div.setAttribute("data-controlType", "text");
-            // in case for editable combobox, create datalist for this input
-            if (template["fields"]["options"]) {
-                var datalistId = newId + "datalist";
-                input.setAttribute("list", datalistId);
-                var datalist = document.createElement("datalist")
-                datalist.id = datalistId;
-                for (item in template["fields"]["options"]) {
-                    var option = document.createElement("option");
-                    option.setAttribute("value", template["fields"]["options"][item]);
-                    datalist.appendChild(option);
-                }
-                input_cover.appendChild(datalist);
-            }
             break;
         case ("combobox"):
             input.classList.add("col-md-12");
@@ -338,6 +325,16 @@ function createSingleControlGroup(template) {
             input.type = "time";
             input_cover.appendChild(input);
             container_div.setAttribute("data-controlType", "time");
+            break;
+        case ("image"):
+            input = document.createElement("img");
+            input.setAttribute("src","./materials/sample.jpg");
+            input.style.height = "auto";
+            input.classList.add("col-md-12");
+            input.classList.add("col-lg-12");
+            input.classList.add("form-control");
+            input_cover.appendChild(input);
+            container_div.setAttribute("data-controlType", "image");
             break;
 
     }
